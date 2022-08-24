@@ -217,8 +217,9 @@ const showProducts = (products) => {
   const allProducts = products.map((product) => product);
   // console.log(allProducts);
   for (const product of allProducts) {
-    // console.log(product.rating.count);
     const image = product.image;
+    const description = product.description;
+    console.log(product);
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
@@ -230,7 +231,7 @@ const showProducts = (products) => {
       <p>Ratings: <strong> ${product.rating.rate}/5 </strong> ( <strong> ${product.rating.count} </strong> Ratings )</p>
       <h2>Price: $ ${product.price}</h2>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
+      <button onclick="showDetail()" id="details-btn" class="btn btn-danger">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -248,6 +249,20 @@ const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   const converted = parseFloat(element);
   return converted;
+};
+// api ইউজ করে ডাটা ফেচ করতে হবে
+const showDetail = () => {
+  const div = document.getElementById("show-details");
+
+  div.innerHTML = `
+    <div class="card" style="width: 18rem;">
+    <img src=${product.image} class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">${product.description}</p>
+    </div>
+  </div>
+  
+    `;
 };
 
 // main price update function
