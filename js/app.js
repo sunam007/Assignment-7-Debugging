@@ -19,7 +19,7 @@ const loadProducts = () => {
       category: "men's clothing",
       image:
         "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-      rating: { rate: 4.1, count: "259" },
+      rating: { rate: 4.1, count: 259 },
     },
     {
       id: 3,
@@ -212,8 +212,12 @@ const loadProducts = () => {
 
 // show all product in UI
 const showProducts = (products) => {
-  const allProducts = products.map((pd) => pd);
+  // products should be an array;
+  // console.log(products);
+  const allProducts = products.map((product) => product);
+  // console.log(allProducts);
   for (const product of allProducts) {
+    // console.log(product.rating.count);
     const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
@@ -223,6 +227,7 @@ const showProducts = (products) => {
       </div>
       <h3>${product.title}</h3>
       <p>Category: ${product.category}</p>
+      <p>Ratings: <strong> ${product.rating.rate}/5 </strong> ( <strong> ${product.rating.count} </strong> Ratings )</p>
       <h2>Price: $ ${product.price}</h2>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
       <button id="details-btn" class="btn btn-danger">Details</button></div>
@@ -257,7 +262,8 @@ const updatePrice = (id, value) => {
 
 // set innerText function
 const setInnerText = (id, value) => {
-  document.getElementById(id).innerText = Math.round(value);
+  console.log(value);
+  document.getElementById(id).innerText = value.toFixed(2);
 };
 
 // update delivery charge and total Tax

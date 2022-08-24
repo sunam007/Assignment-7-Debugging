@@ -36,13 +36,15 @@ body {
   justify-content: center;
 }
 .single-product {
+  margin: 5px;
   padding: 10px;
+  background: #f5f5f5;
   transition: 0.6s;
 }
 .single-product:hover {
   box-shadow: 4px 4px 7px gray;
   border-radius: 10px;
-  border: 1px solid cyan;
+  border: 1px solid #f5f5f5;
 }
 .product-image {
   width: 150px;
