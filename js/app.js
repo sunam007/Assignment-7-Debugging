@@ -243,6 +243,7 @@ const addToCart = (id, price) => {
 
   updateTaxAndCharge();
   document.getElementById("total-Products").innerText = count;
+  document.getElementById("show-details").innerHTML = "";
 };
 
 const getInputValue = (id) => {
