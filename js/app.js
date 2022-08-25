@@ -219,7 +219,7 @@ const showProducts = (products) => {
   for (const product of allProducts) {
     const image = product.image;
     const description = product.description;
-    console.log(product);
+    console.log(product.id);
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
@@ -231,7 +231,7 @@ const showProducts = (products) => {
       <p>Ratings: <strong> ${product.rating.rate}/5 </strong> ( <strong> ${product.rating.count} </strong> Ratings )</p>
       <h2>Price: $ ${product.price}</h2>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button onclick="showDetail()" id="details-btn" class="btn btn-danger">Details</button></div>
+      <button onclick="showDetail(${product.id})" id="details-btn" class="btn btn-danger">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -251,19 +251,25 @@ const getInputValue = (id) => {
   return converted;
 };
 // api ইউজ করে ডাটা ফেচ করতে হবে
-const showDetail = () => {
-  const div = document.getElementById("show-details");
-
-  div.innerHTML = `
-    <div class="card" style="width: 18rem;">
-    <img src=${product.image} class="card-img-top" alt="...">
-    <div class="card-body">
-      <p class="card-text">${product.description}</p>
-    </div>
-  </div>
-  
-    `;
-};
+// const singleDetailDiv = document.getElementById("show-details");
+function showDetail(id) {
+  console.log("calling from sD", id);
+  const singleDetailDiv = document.getElementById("show-details");
+  url = `https://fakestoreapi.com/products/${id}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      singleDetailDiv.innerHTML = `
+      <img src="${data.image}" class="card-img-top w-50 h-25" alt="..." />
+        <div class="card-body">
+        <h5 class="card-title"> ${data.title} </h5>
+          <p class="card-text">
+            ${data.description}
+          </p>
+        </div>
+      `;
+    });
+}
 
 // main price update function
 const updatePrice = (id, value) => {

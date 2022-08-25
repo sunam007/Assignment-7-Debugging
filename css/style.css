@@ -60,7 +60,18 @@ body {
   position: fixed;
 }
 .cart-main {
+  /* position: relative; */
   padding-right: 30px;
+}
+#show-details {
+  width: 300px;
+  box-shadow: 10px 10px 20px gray;
+  /* border: 1px solid green; */
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-right: 30px;
+  position: fixed;
 }
 @media only screen and (max-width: 768px) {
   #all-products {
