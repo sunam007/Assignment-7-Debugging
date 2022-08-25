@@ -210,6 +210,11 @@ const loadProducts = () => {
   showProducts(data);
 };
 
+//single Product Display style toggle
+function displayToggle(property) {
+  document.getElementById("show-details").style.display = property;
+}
+
 // show all product in UI
 const showProducts = (products) => {
   // products should be an array;
@@ -243,7 +248,7 @@ const addToCart = (id, price) => {
 
   updateTaxAndCharge();
   document.getElementById("total-Products").innerText = count;
-  document.getElementById("show-details").innerHTML = "";
+  displayToggle("none");
 };
 
 const getInputValue = (id) => {
@@ -251,10 +256,9 @@ const getInputValue = (id) => {
   const converted = parseFloat(element);
   return converted;
 };
+
 // api ইউজ করে ডাটা ফেচ করতে হবে
-// const singleDetailDiv = document.getElementById("show-details");
 function showDetail(id) {
-  console.log("calling from sD", id);
   const singleDetailDiv = document.getElementById("show-details");
   url = `https://fakestoreapi.com/products/${id}`;
   fetch(url)
@@ -269,6 +273,7 @@ function showDetail(id) {
           </p>
         </div>
       `;
+      displayToggle("block");
     });
 }
 
