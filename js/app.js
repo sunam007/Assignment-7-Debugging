@@ -224,7 +224,7 @@ const showProducts = (products) => {
   for (const product of allProducts) {
     const image = product.image;
     const description = product.description;
-    console.log(product.id);
+    // console.log(product.id);
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
@@ -265,7 +265,7 @@ function showDetail(id) {
     .then((res) => res.json())
     .then((data) => {
       singleDetailDiv.innerHTML = `
-      <img src="${data.image}" class="card-img-top w-50 h-25" alt="..." />
+      <img style="width:150px; height:150px;" src="${data.image}" class="card-img-top w-50" alt="..." />
         <div class="card-body">
         <h5 class="card-title"> ${data.title} </h5>
           <p class="card-text">
@@ -279,7 +279,7 @@ function showDetail(id) {
 
 // main price update function
 const updatePrice = (id, value) => {
-  console.log(id, value);
+  // console.log(id, value);
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value);
   const total = convertedOldPrice + convertPrice;
@@ -289,14 +289,14 @@ const updatePrice = (id, value) => {
 
 // set innerText function
 const setInnerText = (id, value) => {
-  console.log(value);
+  // console.log(value);
   document.getElementById(id).innerText = value.toFixed(2);
 };
 
 // update delivery charge and total Tax
 const updateTaxAndCharge = () => {
   const priceConverted = getInputValue("price");
-  console.log("priceConv", priceConverted);
+  // console.log("priceConv", priceConverted);
   if (priceConverted > 200) {
     setInnerText("delivery-charge", 30);
     setInnerText("total-tax", priceConverted * 0.2);
